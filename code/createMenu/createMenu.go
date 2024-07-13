@@ -4,6 +4,7 @@ import (
 	tgbotapi "github.com/Syfaro/telegram-bot-api"
 )
 
+// CreateInlineKeyboardMenuSearchStudent создает меню для поиска студентов.
 func CreateInlineKeyboardMenuSearchStudent() *tgbotapi.InlineKeyboardMarkup {
 	keyboard := tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -20,6 +21,7 @@ func CreateInlineKeyboardMenuSearchStudent() *tgbotapi.InlineKeyboardMarkup {
 	return &keyboard
 }
 
+// CreateInlineKeyboardMenuAchievements создает меню для работы с достижениями.
 func CreateInlineKeyboardMenuAchievements() *tgbotapi.InlineKeyboardMarkup {
 	keyboard := tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -34,6 +36,7 @@ func CreateInlineKeyboardMenuAchievements() *tgbotapi.InlineKeyboardMarkup {
 	return &keyboard
 }
 
+// CreateInlineKeyboardMenuStudentAchievements создает меню для работы со студентскими достижениями.
 func CreateInlineKeyboardMenuStudentAchievements() *tgbotapi.InlineKeyboardMarkup {
 	keyboard := tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -51,7 +54,7 @@ func CreateInlineKeyboardMenuStudentAchievements() *tgbotapi.InlineKeyboardMarku
 	return &keyboard
 }
 
-// Функция для создания меню
+// CreateMenuKeyboard создает основное меню.
 func CreateMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -66,7 +69,7 @@ func CreateMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
-// Функция для создания меню регистрации
+// CreateTeacherMenu создает меню для преподавателя.
 func CreateTeacherMenu() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -78,6 +81,7 @@ func CreateTeacherMenu() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
+// CreateTeacherSearchMenu создает меню для поиска информации о студентах.
 func CreateTeacherSearchMenu() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -95,6 +99,7 @@ func CreateTeacherSearchMenu() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
+// CreateTeacherUploadMenu создает меню для загрузки данных преподавателя.
 func CreateTeacherUploadMenu() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -112,7 +117,7 @@ func CreateTeacherUploadMenu() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
-// Функция для создания меню достижений
+// CreateAchievementsMenuKeyboard создает меню для работы с достижениями.
 func CreateAchievementsMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -136,7 +141,7 @@ func CreateAchievementsMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
-// Функция для создания меню достижений
+// CreateDeleteMenuKeyboard создает меню для удаления достижений.
 func CreateDeleteMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -151,7 +156,7 @@ func CreateDeleteMenuKeyboard() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
-// Функция для создания меню после добавления достижения
+// CreateAchievementAddedKeyboard создает меню после добавления достижения.
 func CreateAchievementAddedKeyboard() tgbotapi.InlineKeyboardMarkup {
 	return tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -163,8 +168,7 @@ func CreateAchievementAddedKeyboard() tgbotapi.InlineKeyboardMarkup {
 	)
 }
 
-///
-
+// CreateInlineKeyboardData создает меню для изменения личных данных.
 func CreateInlineKeyboardData() *tgbotapi.InlineKeyboardMarkup {
 	keyboard := tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -180,6 +184,7 @@ func CreateInlineKeyboardData() *tgbotapi.InlineKeyboardMarkup {
 	return &keyboard
 }
 
+// CreateInlineKeyboard создает общее меню с возможностью управления.
 func CreateInlineKeyboard() *tgbotapi.InlineKeyboardMarkup {
 	keyboard := tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
@@ -194,7 +199,6 @@ func CreateInlineKeyboard() *tgbotapi.InlineKeyboardMarkup {
 			tgbotapi.NewInlineKeyboardButtonData("📝 Изменить название достижения", "button_edit_name_achievements"),
 		),
 		tgbotapi.NewInlineKeyboardRow(
-
 			tgbotapi.NewInlineKeyboardButtonData("🔄 Изменить файл", "button_edit_file"),
 		),
 		tgbotapi.NewInlineKeyboardRow(

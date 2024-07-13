@@ -18,16 +18,18 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
-var host = os.Getenv("HOST")
-var port = os.Getenv("PORT")
-var user = os.Getenv("USER")
-var password = os.Getenv("PASSWORD")
-var dbname = os.Getenv("DBNAME")
-var sslmode = os.Getenv("SSLMODE")
+// Получаем переменные окружения для подключения к базе данных
+var (
+	host     = os.Getenv("HOST")
+	port     = os.Getenv("PORT")
+	user     = os.Getenv("USER")
+	password = os.Getenv("PASSWORD")
+	dbname   = os.Getenv("DBNAME")
+	sslmode  = os.Getenv("SSLMODE")
+	dbInfo   = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", host, port, user, password, dbname, sslmode)
+)
 
-var dbInfo = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", host, port, user, password, dbname, sslmode)
-
-// Создаем таблицы users и achievements в базе данных при подключении к ней
+// CreateTables создает необходимые таблицы в базе данных
 func CreateTables() error {
 	// Подключаемся к базе данных
 	db, err := sql.Open("postgres", dbInfo)
@@ -70,6 +72,7 @@ func CreateTables() error {
 	return nil
 }
 
+// DeleteRecordsByChatID удаляет записи, связанные с chatID, из всех таблиц
 func DeleteRecordsByChatID(chatID int64) error {
 	db, err := sql.Open("postgres", dbInfo)
 	if err != nil {
@@ -109,12 +112,11 @@ func DeleteRecordsByChatID(chatID int64) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
+// AddStudent добавляет запись о студенте
 func AddStudent(chatID int64, isStudent bool) error {
-
 	// Подключаемся к базе данных
 	db, err := sql.Open("postgres", dbInfo)
 	if err != nil {
@@ -132,7 +134,7 @@ func AddStudent(chatID int64, isStudent bool) error {
 	return nil
 }
 
-// checkStudentByChatID проверяет, существует ли запись с данным chatID и возвращает значение ISSTUDENT.
+// CheckStudentByChatID проверяет, существует ли запись о студенте и возвращает значение ISSTUDENT
 func CheckStudentByChatID(chatID int64) (bool, bool, error) {
 
 	// Подключаемся к базе данных
@@ -154,6 +156,7 @@ func CheckStudentByChatID(chatID int64) (bool, bool, error) {
 	return isStudent, true, nil
 }
 
+// SearchDataByAchievements ищет записи по подстроке достижения
 func SearchDataByAchievements(substr string) ([]gv.Data, error) {
 	var data []gv.Data
 
@@ -211,6 +214,7 @@ func (a ByFio) Len() int           { return len(a) }
 func (a ByFio) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ByFio) Less(i, j int) bool { return a[i].Student.Fio < a[j].Student.Fio }
 
+// SearchDataByUsergroup ищет записи по группе пользователя
 func SearchDataByUsergroup(usergroup string) ([]gv.Data, error) {
 	var data []gv.Data
 
@@ -290,6 +294,7 @@ func SearchDataByUsergroup(usergroup string) ([]gv.Data, error) {
 	return data, nil
 }
 
+// FetchData извлекает все данные пользователей и их достижения
 func FetchData() ([]gv.Data, error) {
 	var data []gv.Data
 
@@ -533,6 +538,7 @@ func EditGroup(chatID int64) error {
 	return nil
 }
 
+// SaveFile сохраняет файл в базе данных
 func SaveFile(bot *tgbotapi.BotAPI, update tgbotapi.Update, chatID int64, new bool) error {
 	if update.Message.Document == nil {
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Ошибка: пришел не файл\nПожалуйста, отправьте файл с расширением pdf")
@@ -593,6 +599,7 @@ func SaveFile(bot *tgbotapi.BotAPI, update tgbotapi.Update, chatID int64, new bo
 	return nil
 }
 
+// SendFile извлекает файлы из базы данных и отправляет их пользователю через Telegram
 func SendFile(bot *tgbotapi.BotAPI, callback *tgbotapi.CallbackQuery, chatID int, achievements string) error {
 	db, err := sql.Open("postgres", dbInfo)
 	if err != nil {
