@@ -49,7 +49,7 @@ services:
       TOKEN: <your_telegram_bot_token>
       HOST: db
       USER: postgres
-      PASSWORD: test
+      PASSWORD: <password>
       DBNAME: postgres
     depends_on:
       - db
