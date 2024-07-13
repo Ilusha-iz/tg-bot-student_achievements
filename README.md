@@ -29,7 +29,7 @@ ____
 ```
 git clone https://github.com/Ilusha-iz/tg-bot-student_achievements
 ```
-2. Добавьте токен из BotFather и пароль для postgreSQL в переменные env в docker-compose.yml
+2. Добавьте токен из BotFather  в переменную env в docker-compose.yml
 ```
 version: '3.5'
 
@@ -37,7 +37,7 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: <your_password>
+      POSTGRES_PASSWORD: test
     ports:
       - "5432:5432"
 
