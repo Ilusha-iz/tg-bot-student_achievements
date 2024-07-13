@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+  
+  bot:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      CREATE_TABLE: "yes"
+      DB_SWITCH: "on"
+      HOST: db
+      PORT: 5432
+      USER: postgres
+      PASSWORD: {PASSWORD}
+      DBNAME: postgres
+      SSLMODE: disable
+      TOKEN: {TOKEN}
+    ports:
+      - "80:80"
