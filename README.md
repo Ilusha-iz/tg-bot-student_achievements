@@ -37,7 +37,7 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: test
+      POSTGRES_PASSWORD: <password>
     ports:
       - "5432:5432"
 
